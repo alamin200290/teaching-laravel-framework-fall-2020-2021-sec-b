@@ -5,7 +5,8 @@ use Illuminate\Http\Request;
 
 class homeController extends Controller
 {
-    public function index(){
+
+    public function index(Request $req){
 
     /*	$user = ['name'=> 'alamin', 'id'=>12];
     	return view('home.index', $user);*/
@@ -29,7 +30,8 @@ class homeController extends Controller
     	$v->withId('12');
     	return $v;*/
 
-    	return view('home.index');
+        return view('home.index', ['username'=> $req->session()->get('username')]);
+    	
     }
 
     public function stdlist(){
@@ -47,13 +49,14 @@ class homeController extends Controller
     	//return view('home.create');
     }
 
-    public function insert(){
+    public function store(){
     
-    	//return view('home.create');
+    	return redirect()->route('home.stdlist');
     }
 
     public function edit(){
     	
+        //return redirect()->route('home.stdlist');
     	//return view('home.stdlist');
     }
 

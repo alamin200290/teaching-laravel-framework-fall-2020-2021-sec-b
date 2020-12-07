@@ -6,6 +6,11 @@
 <body>
 
 	<form method="post">
+		<!-- @csrf -->
+		<!-- {{csrf_field()}} -->
+		
+		<input type="hidden" name="_token" value="{{csrf_token()}}">
+		
 		<fieldset>
 			<legend>Login</legend>
 		<table>
@@ -23,6 +28,7 @@
 			</tr>
 		</table>
 		</fieldset>
+		<div style="color: red">{{session('msg')}} </div>
 	</form>
 </body>
 </html>
