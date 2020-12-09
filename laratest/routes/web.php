@@ -28,7 +28,7 @@ Route::group(['middleware'=>['sess']], function(){
 	Route::get('/details/{id}', 'homeController@details');
 
 	Route::group(['middleware'=>['type']], function(){
-		Route::get('/create', 'homeController@create');
+		Route::get('/create', 'homeController@create')->name('home.create');
 		Route::post('/create', 'homeController@store');
 		Route::get('/edit/{id}', 'homeController@edit');
 		Route::post('/edit/{id}', 'homeController@update');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\studentRequest;
+use Validator;
 
 class homeController extends Controller
 {
@@ -46,11 +48,42 @@ class homeController extends Controller
 
     public function create(){
     
-    	//return view('home.create');
+    	return view('home.create');
     }
 
-    public function store(){
-    
+    public function store(studentRequest $req){
+        
+       /* $validation = Validator::make($req->all(), [
+            'name' => 'required|min:3',
+            'email'=> 'required',
+            'cgpa' => 'required'
+        ]);
+
+        if($validation->fails()){
+            return redirect()
+                    ->route('home.create')
+                    ->with('errors', $validation->errors())
+                    ->withInput();
+
+            return back()
+                    ->with('errors', $validation->errors())
+                    ->withInput();
+        }*/
+
+
+       /* $this->validate($req, [
+            'name' => 'required|min:3',
+            'email'=> 'required',
+            'cgpa' => 'required'
+        ])->validate();*/
+
+
+        /*$req->validate([
+            'name' => 'required|min:3',
+            'email'=> 'required',
+            'cgpa' => 'required'
+        ])->validate();*/
+
     	return redirect()->route('home.stdlist');
     }
 
