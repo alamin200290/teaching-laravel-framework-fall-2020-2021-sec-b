@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\studentRequest;
 use Validator;
+use App\User;
 
 class homeController extends Controller
 {
@@ -37,13 +38,16 @@ class homeController extends Controller
     }
 
     public function stdlist(){
-    	$students = $this->getStudentlist();
+    	//$students = $this->getStudentlist();
+
+        $students = User::all();
     	return view('home.stdlist')->with('students', $students);
     }
 
-	public function details(){
+	public function show($id){
     	
-    	//return view('home.stdlist');
+        $std = User::find($id);
+        return view('home.show', $std);
     }
 
     public function create(){
@@ -84,18 +88,56 @@ class homeController extends Controller
             'cgpa' => 'required'
         ])->validate();*/
 
+        if($req->hasFile('myimg')){
+            $file = $req->file('myimg');
+
+            //echo "File name:".$file->getClientOriginalName()."<br>";
+            //echo "File Ext:".$file->getClientOriginalExtension()."<br>";
+            //echo "File Size:".$file->getSize()."<br>";
+
+            if($file->move('upload', $file->getClientOriginalName())){
+               
+                $user = new User();
+
+                $user->username = $req->username;
+                $user->password = $req->password;
+                $user->type     = $req->type;
+                $user->name     = $req->name;
+                $user->cgpa     = $req->cgpa;
+                $user->dept     = $req->dept;
+
+                if($user->save()){
+                    return redirect()->route('home.stdlist');
+                }
+
+            }else{
+                echo "error";
+            }
+        }
+
+    	//return redirect()->route('home.stdlist');
+    }
+
+    public function edit($id){
+    	
+        $std = User::find($id);
+    	return view('home.edit', $std);
+    }
+
+    public function update($id, Request $req){
+    	   
+        $user = User::find($id);
+
+        $user->username = $req->username;
+        $user->password = $req->password;
+        $user->type     = $req->type;
+        $user->name     = $req->name;
+        $user->cgpa     = $req->cgpa;
+        $user->dept     = $req->dept;
+
+        $user->save();
+
     	return redirect()->route('home.stdlist');
-    }
-
-    public function edit(){
-    	
-        //return redirect()->route('home.stdlist');
-    	//return view('home.stdlist');
-    }
-
-    public function update(){
-    	
-    	//return view('home.stdlist');
     }
 
     public function delete(){

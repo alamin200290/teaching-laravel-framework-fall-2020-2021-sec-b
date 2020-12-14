@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class loginController extends Controller
 {
@@ -27,8 +28,20 @@ class loginController extends Controller
         $req->session()->reflash();
         $msg1 = $req->session()->get('msg');*/
 
+        //$user = User::all();
+        $user  = User::where('username', $req->username)
+                        ->where('password', $req->password)
+                        ->first();
 
-    	if($req->username == $req->password){
+       /* $user = DB::table('user_table')
+                    ->where('username', $req->username)
+                    ->where('password', $req->password)
+                    ->get();*/
+
+        //echo $user['dept'];
+
+    	if(count($user) > 0){
+
             $req->session()->put('username', $req->username);
             $req->session()->put('type', $req->username);
             
@@ -36,8 +49,6 @@ class loginController extends Controller
     	}else{
             $req->session()->flash('msg', 'invalid username/password');
     		return redirect('/login');
-
-            //return view('login.index');
     	}
     }
 }

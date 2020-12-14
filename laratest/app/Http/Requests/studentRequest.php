@@ -24,16 +24,18 @@ class studentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
-            'email'=> 'required',
+            'username' => 'required|min:3',
+            'password' => 'required',
+            'name' => 'required',
+            'dept' => 'required',
+            'type' => 'required',
             'cgpa' => 'required'
         ];
     }
 
     public function messages(){
         return [
-            'name.required'=> "can't left empty....",
-            'name.min'=> "must be at least 3 ch...."
+            'name.required'=> "can't left empty...."
         ];
     }
 }
