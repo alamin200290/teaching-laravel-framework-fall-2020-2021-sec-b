@@ -8,6 +8,7 @@
 	<a href="/logout">logout</a>
 	<br>
 
+	<img src="{{asset('upload/$profile_img')}}">>
 		<table border="1">
 			<tr>
 				<td>Username</td>

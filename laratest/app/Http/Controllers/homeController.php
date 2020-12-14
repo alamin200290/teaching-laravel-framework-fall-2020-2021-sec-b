@@ -99,12 +99,13 @@ class homeController extends Controller
                
                 $user = new User();
 
-                $user->username = $req->username;
-                $user->password = $req->password;
-                $user->type     = $req->type;
-                $user->name     = $req->name;
-                $user->cgpa     = $req->cgpa;
-                $user->dept     = $req->dept;
+                $user->username     = $req->username;
+                $user->password     = $req->password;
+                $user->type         = $req->type;
+                $user->name         = $req->name;
+                $user->cgpa         = $req->cgpa;
+                $user->dept         = $req->dept;
+                $user->profile_img  = $file->getClientOriginalName();
 
                 if($user->save()){
                     return redirect()->route('home.stdlist');
