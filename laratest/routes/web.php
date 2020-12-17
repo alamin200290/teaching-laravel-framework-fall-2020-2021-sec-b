@@ -38,5 +38,6 @@ Route::group(['middleware'=>['sess']], function(){
 	
 });
 
-
+//Route::resource('/product', 'ProductController');
+Route::resource('/student', 'StudentController');
 

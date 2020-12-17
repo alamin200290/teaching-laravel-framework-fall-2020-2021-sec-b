@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home page</title>
-</head>
-<body>
-	<a href="{{route('home.index')}}">Back</a> |
-	<a href="/logout">logout</a>
-	<br>
+@extends('layout/navbar')
 
 
+@section('title')
+Create Student
+@endsection
+
+@section('head')
+Create New User
+@endsection
+
+
+@section('content')
 		<form method="post" enctype="multipart/form-data">
 
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -54,5 +56,5 @@
 		@foreach($errors->all() as $err)
 			{{$err}} <br>
 		@endforeach
-</body>
-</html>
+
+@endsection

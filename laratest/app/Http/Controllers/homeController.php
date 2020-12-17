@@ -163,4 +163,6 @@ class homeController extends Controller
     		['id'=> 7, 'name'=> 'asd', 'cgpa'=>2.5, 'email'=> 'asd@aiub.edu']
     	];
     }
+
+
 }

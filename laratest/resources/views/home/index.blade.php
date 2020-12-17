@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home page</title>
-</head>
-<body>
-	<h1>Welcome home! {{$username}}</h1>
-	<a href="/create">Create New Student</a> |
-	<a href="{{route('home.stdlist')}}">View Student List</a> |
-	<a href="/logout">logout</a>
-	<br>
+@extends('layout/navbar')
 
-</body>
-</html>
+
+@section('title')
+Home Page
+@endsection
+
+
+@section('head')
+Welcome home! {{$username}}
+@endsection
